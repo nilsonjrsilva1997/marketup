@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Helpers\Helper;
 
 class UserController extends Controller
 {
@@ -20,6 +21,8 @@ class UserController extends Controller
         $validatedData['password'] = bcrypt($request->password);
         $user = User::create($validatedData);
         $accessToken = $user->createToken('authToken')->accessToken;
+
+        Helper::saveUnitsDefault($user->id);
 
         return response(['user' => $user, 'access_token' => $accessToken]);
     }

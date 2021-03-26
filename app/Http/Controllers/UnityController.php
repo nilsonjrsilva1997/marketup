@@ -18,7 +18,7 @@ class UnityController extends Controller
     {
         $userId = Auth::id();        
         $request['user_id'] = $userId;
-         
+
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'abbreviation' => 'required|string|max:255',

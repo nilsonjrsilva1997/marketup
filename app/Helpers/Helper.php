@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Helpers;
+use Illuminate\Support\Facades\DB;
 
 class Helper
 {
@@ -24,5 +25,39 @@ class Helper
     public static function deleteImageStorage($imageName)
     {
         unlink(storage_path('app/public/images/'. $imageName));
+    }
+
+    public static function saveUnitsDefault($userId)
+    {
+        DB::table('unities')->insert([
+            'name' => 'Caixa',
+            'abbreviation' => 'Caixa',
+            'user_id' => $userId,
+        ]);
+
+        DB::table('unities')->insert([
+            'name' => 'Fardo',
+            'abbreviation' => 'Fardo',
+            'user_id' => $userId,
+        ]);
+
+        DB::table('unities')->insert([
+            'name' => 'Hora/Funcionario',
+            'abbreviation' => 'Hora/Funcionario',
+            'user_id' => $userId,
+        ]);
+
+        DB::table('unities')->insert([
+            'name' => 'Quilograma',
+            'abbreviation' => 'Quilograma',
+            'user_id' => $userId,
+        ]);
+
+        DB::table('unities')->insert([
+            'name' => 'Unidade',
+            'abbreviation' => 'Unidade',
+            'user_id' => $userId,
+        ]);
+
     }
 }
