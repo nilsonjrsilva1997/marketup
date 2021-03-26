@@ -67,7 +67,7 @@ class UnityController extends Controller
             $userId = Auth::id();
             
             if ($unity->user_id != $userId) {
-                return response(['message' => 'Usuário não tem permissão para alterar esses dados']);
+                return response(['message' => 'Usuário não tem permissão para deletar esses dados']);
             }
 
             if ($unity->delete()) {
