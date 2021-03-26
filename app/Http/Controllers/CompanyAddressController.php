@@ -29,7 +29,12 @@ class CompanyAddressController extends Controller
     public function show($id)
     {
         $companyAddress =  CompanyAddress::find($id);
-        return $companyAddress;
+
+        if (!empty($companyAddress)) {
+            return $companyAddress;
+        } else {
+            return response(['message' => 'Endereço da empresa não encontrado'], 422);
+        }
     }
 
     public function update(Request $request, $id)

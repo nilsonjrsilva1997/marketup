@@ -42,7 +42,12 @@ class SegmentController extends Controller
     public function show($id)
     {
         $segment =  Segment::find($id);
-        return $segment;
+
+        if (!empty($segment)) {
+            return $segment;
+        } else {
+            return response(['message' => 'Segmento não encontrada'], 422);
+        }
     }
 
     public function update(Request $request, $id)

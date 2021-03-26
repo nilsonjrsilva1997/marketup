@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use App\Models\Company;
 use App\Models\Unity;
+use App\Models\Category;
 
 class User extends Authenticatable
 {
@@ -54,5 +55,10 @@ class User extends Authenticatable
     public function unities()
     {
         return $this->hasMany(Unity::class);
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
     }
 }

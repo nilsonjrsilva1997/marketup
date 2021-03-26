@@ -32,8 +32,13 @@ class CompanyController extends Controller
 
     public function show($id)
     {
-        $company =  Company::find($id);
-        return $company;
+        $itemType =  ItemType::find($id);
+
+        if (!empty($itemType)) {
+            return $itemType;
+        } else {
+            return response(['message' => 'Empresa não encontrado'], 422);
+        }
     }
 
     public function update(Request $request, $id)

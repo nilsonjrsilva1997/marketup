@@ -25,7 +25,12 @@ class ItemTypeController extends Controller
     public function show($id)
     {
         $itemType =  ItemType::find($id);
-        return $itemType;
+
+        if (!empty($itemType)) {
+            return $itemType;
+        } else {
+            return response(['message' => 'Tipo de item não encontrado'], 422);
+        }
     }
 
     public function update(Request $request, $id)

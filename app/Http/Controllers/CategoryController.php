@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Unity;
+use App\Models\Category;
 use Auth;
 
-class UnityController extends Controller
+class CategoryController extends Controller
 {
     public function index()
     {
         $userId = Auth::id();
-        $unity =  Unity::where(['user_id' => $userId])->get();
-        return $unity;
+        $category =  Category::where(['user_id' => $userId])->get();
+        return $category;
     }
 
     public function create(Request $request)
@@ -22,21 +22,20 @@ class UnityController extends Controller
 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'abbreviation' => 'required|string|max:255',
             'user_id' => 'required|integer|exists:users,id',
         ]);
 
-        return Unity::create($validatedData);
+        return Category::create($validatedData);
     }
 
     public function show($id)
     {
-        $unity =  Unity::find($id);
+        $category =  Category::find($id);
 
-        if (!empty($unity)) {
-            return $unity;
+        if (!empty($category)) {
+            return $category;
         } else {
-            return response(['message' => 'Unidade não encontrada'], 422);
+            return response(['message' => 'Categoria não encontrada'], 422);
         }
     }
 
@@ -44,42 +43,41 @@ class UnityController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'string|max:255',
-            'abbreviation' => 'string|max:255',
         ]);
 
-        $unity = Unity::find($id);
+        $category = Category::find($id);
 
-        if (!empty($unity)) {
+        if (!empty($category)) {
             $userId = Auth::id();
 
-            if ($unity->user_id != $userId) {
+            if ($category->user_id != $userId) {
                 return response(['message' => 'Usuário não tem permissão para alterar esses dados']);
             }
 
-            $unity->fill($validatedData);
-            $unity->save();
-            return $unity;
+            $category->fill($validatedData);
+            $category->save();
+            return $category;
         } else {
-            return response(['message' => 'Unidade não encontrada'], 422);
+            return response(['message' => 'Categoria não encontrada'], 422);
         }
     }
 
     public function destroy($id)
     {
-        $unity = Unity::find($id);
+        $category = Category::find($id);
 
-        if (!empty($unity)) {
+        if (!empty($category)) {
             $userId = Auth::id();
             
-            if ($unity->user_id != $userId) {
+            if ($category->user_id != $userId) {
                 return response(['message' => 'Usuário não tem permissão para deletar esses dados']);
             }
 
-            if ($unity->delete()) {
-                return response(['message' => 'Unidade excluida com sucesso'], 200);
+            if ($category->delete()) {
+                return response(['message' => 'Categoria excluida com sucesso'], 200);
             }
         } else {
-            return response(['message' => 'Unidade não encontrada'], 422);
+            return response(['message' => 'Categoria não encontrada'], 422);
         }
     }
 }

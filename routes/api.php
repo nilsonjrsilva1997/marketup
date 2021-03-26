@@ -59,6 +59,14 @@ Route::middleware('auth:api')->group(function () {
         Route::put('/update/{id}', [\App\Http\Controllers\UnityController::class, 'update']);
         Route::delete('destroy/{id}', [\App\Http\Controllers\UnityController::class, 'destroy']);
     });
+
+    Route::prefix('category')->group(function () {
+        Route::get('/', [\App\Http\Controllers\CategoryController::class, 'index']);
+        Route::get('/show/{id}', [\App\Http\Controllers\CategoryController::class, 'show']);
+        Route::post('/', [\App\Http\Controllers\CategoryController::class, 'create']);
+        Route::put('/update/{id}', [\App\Http\Controllers\CategoryController::class, 'update']);
+        Route::delete('destroy/{id}', [\App\Http\Controllers\CategoryController::class, 'destroy']);
+    });
 });
 
 Route::post('register', [App\Http\Controllers\UserController::class, 'register']);
