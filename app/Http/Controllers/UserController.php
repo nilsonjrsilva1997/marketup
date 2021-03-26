@@ -61,4 +61,15 @@ class UserController extends Controller
             return response(['message' => 'Usuário não encontrado']);
         }
     }
+
+    public function checkDomainAvailable($domain)
+    {
+        $count = User::where(['domain' => $domain])->count();
+
+        if($count == 0) {
+           return response(['message' => 'Domínio disponível'], 200); 
+        } else {
+            return response(['message' => 'Domínio em uso'], 422);
+        }
+    }
 }

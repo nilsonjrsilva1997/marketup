@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->group(function () {
     Route::prefix('user')->group(function () {
         Route::put('update', [\App\Http\Controllers\UserController::class, 'update']);
+        Route::get('check_domain_available/{domin}', [\App\Http\Controllers\UserController::class, 'checkDomainAvailable']);
     });
 
     Route::prefix('company_address')->group(function () {
@@ -49,6 +50,22 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/', [\App\Http\Controllers\ItemTypeController::class, 'create']);
         Route::put('/update/{id}', [\App\Http\Controllers\ItemTypeController::class, 'update']);
         Route::delete('destroy/{id}', [\App\Http\Controllers\ItemTypeController::class, 'destroy']);
+    });
+
+    Route::prefix('unity')->group(function () {
+        Route::get('/', [\App\Http\Controllers\UnityController::class, 'index']);
+        Route::get('/show/{id}', [\App\Http\Controllers\UnityController::class, 'show']);
+        Route::post('/', [\App\Http\Controllers\UnityController::class, 'create']);
+        Route::put('/update/{id}', [\App\Http\Controllers\UnityController::class, 'update']);
+        Route::delete('destroy/{id}', [\App\Http\Controllers\UnityController::class, 'destroy']);
+    });
+
+    Route::prefix('user_unity')->group(function () {
+        Route::get('/', [\App\Http\Controllers\UserUnityController::class, 'index']);
+        Route::get('/show/{id}', [\App\Http\Controllers\UserUnityController::class, 'show']);
+        Route::post('/', [\App\Http\Controllers\UserUnityController::class, 'create']);
+        Route::put('/update/{id}', [\App\Http\Controllers\UserUnityController::class, 'update']);
+        Route::delete('destroy/{id}', [\App\Http\Controllers\UserUnityController::class, 'destroy']);
     });
 });
 

@@ -61,8 +61,6 @@ class SegmentController extends Controller
                 if ($request->hasFile('icon')) {
                     Helper::deleteImageStorage($segment->icon);
                     $responseIcon = Helper::uploadImage($request, 'icon');
-
-                    return 'enter here';
                 }
 
                 if ($request->hasFile('icon')) {
