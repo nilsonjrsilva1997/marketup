@@ -44,28 +44,30 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('destroy/{id}', [\App\Http\Controllers\SegmentController::class, 'destroy']);
     });
 
-    Route::prefix('item_type')->group(function () {
-        Route::get('/', [\App\Http\Controllers\ItemTypeController::class, 'index']);
-        Route::get('/show/{id}', [\App\Http\Controllers\ItemTypeController::class, 'show']);
-        Route::post('/', [\App\Http\Controllers\ItemTypeController::class, 'create']);
-        Route::put('/update/{id}', [\App\Http\Controllers\ItemTypeController::class, 'update']);
-        Route::delete('destroy/{id}', [\App\Http\Controllers\ItemTypeController::class, 'destroy']);
-    });
+    Route::prefix('product')->group(function () {
+        Route::prefix('item_type')->group(function () {
+            Route::get('/', [\App\Http\Controllers\ItemTypeController::class, 'index']);
+            Route::get('/show/{id}', [\App\Http\Controllers\ItemTypeController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\ItemTypeController::class, 'create']);
+            Route::put('/update/{id}', [\App\Http\Controllers\ItemTypeController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\ItemTypeController::class, 'destroy']);
+        });
 
-    Route::prefix('unity')->group(function () {
-        Route::get('/', [\App\Http\Controllers\UnityController::class, 'index']);
-        Route::get('/show/{id}', [\App\Http\Controllers\UnityController::class, 'show']);
-        Route::post('/', [\App\Http\Controllers\UnityController::class, 'create']);
-        Route::put('/update/{id}', [\App\Http\Controllers\UnityController::class, 'update']);
-        Route::delete('destroy/{id}', [\App\Http\Controllers\UnityController::class, 'destroy']);
-    });
+        Route::prefix('unity')->group(function () {
+            Route::get('/', [\App\Http\Controllers\UnityController::class, 'index']);
+            Route::get('/show/{id}', [\App\Http\Controllers\UnityController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\UnityController::class, 'create']);
+            Route::put('/update/{id}', [\App\Http\Controllers\UnityController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\UnityController::class, 'destroy']);
+        });
 
-    Route::prefix('category')->group(function () {
-        Route::get('/', [\App\Http\Controllers\CategoryController::class, 'index']);
-        Route::get('/show/{id}', [\App\Http\Controllers\CategoryController::class, 'show']);
-        Route::post('/', [\App\Http\Controllers\CategoryController::class, 'create']);
-        Route::put('/update/{id}', [\App\Http\Controllers\CategoryController::class, 'update']);
-        Route::delete('destroy/{id}', [\App\Http\Controllers\CategoryController::class, 'destroy']);
+        Route::prefix('category')->group(function () {
+            Route::get('/', [\App\Http\Controllers\CategoryController::class, 'index']);
+            Route::get('/show/{id}', [\App\Http\Controllers\CategoryController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\CategoryController::class, 'create']);
+            Route::put('/update/{id}', [\App\Http\Controllers\CategoryController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\CategoryController::class, 'destroy']);
+        });
     });
 });
 
