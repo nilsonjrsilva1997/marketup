@@ -11,7 +11,7 @@ class CategoryController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $categories =  Category::where(['user_id' => $userId])->get();
+        $categories =  Category::where(['user_id' => $userId])->with('subcategories')->get();
         return $categories;
     }
 
@@ -30,10 +30,15 @@ class CategoryController extends Controller
 
     public function show($id)
     {
-        $category =  Category::find($id);
+        $category =  Category::where(['id' => $id])->with('subcategories')->first();
 
         if (!empty($category)) {
-            
+            $userId = Auth::id();
+
+            if ($category->user_id != $userId) {
+                return response(['message' => 'Usuário não tem permissão para alterar esses dados']);
+            }
+
             return $category;
         } else {
             return response(['message' => 'Categoria não encontrada'], 422);
@@ -69,7 +74,7 @@ class CategoryController extends Controller
 
         if (!empty($category)) {
             $userId = Auth::id();
-            
+
             if ($category->user_id != $userId) {
                 return response(['message' => 'Usuário não tem permissão para deletar esses dados']);
             }

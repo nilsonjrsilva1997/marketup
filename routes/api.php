@@ -68,6 +68,14 @@ Route::middleware('auth:api')->group(function () {
             Route::put('/update/{id}', [\App\Http\Controllers\CategoryController::class, 'update']);
             Route::delete('destroy/{id}', [\App\Http\Controllers\CategoryController::class, 'destroy']);
         });
+
+        Route::prefix('subcategory')->group(function () {
+            Route::get('/', [\App\Http\Controllers\SubcategoryController::class, 'index']);
+            Route::get('/show/{id}', [\App\Http\Controllers\SubcategoryController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\SubcategoryController::class, 'create']);
+            Route::put('/update/{id}', [\App\Http\Controllers\SubcategoryController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\SubcategoryController::class, 'destroy']);
+        });
     });
 });
 
