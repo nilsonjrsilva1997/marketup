@@ -20,4 +20,9 @@ class Helper
             return ['status' => false];
         }
     }
+
+    public static function deleteImageStorage($imageName)
+    {
+        unlink(storage_path('app/public/images/'. $imageName));
+    }
 }

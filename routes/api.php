@@ -42,6 +42,14 @@ Route::middleware('auth:api')->group(function () {
         Route::put('/update/{id}', [\App\Http\Controllers\SegmentController::class, 'update']);
         Route::delete('destroy/{id}', [\App\Http\Controllers\SegmentController::class, 'destroy']);
     });
+
+    Route::prefix('item_type')->group(function () {
+        Route::get('/', [\App\Http\Controllers\ItemTypeController::class, 'index']);
+        Route::get('/show/{id}', [\App\Http\Controllers\ItemTypeController::class, 'show']);
+        Route::post('/', [\App\Http\Controllers\ItemTypeController::class, 'create']);
+        Route::put('/update/{id}', [\App\Http\Controllers\ItemTypeController::class, 'update']);
+        Route::delete('destroy/{id}', [\App\Http\Controllers\ItemTypeController::class, 'destroy']);
+    });
 });
 
 Route::post('register', [App\Http\Controllers\UserController::class, 'register']);
