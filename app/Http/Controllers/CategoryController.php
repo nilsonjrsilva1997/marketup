@@ -33,6 +33,7 @@ class CategoryController extends Controller
         $category =  Category::find($id);
 
         if (!empty($category)) {
+            
             return $category;
         } else {
             return response(['message' => 'Categoria não encontrada'], 422);

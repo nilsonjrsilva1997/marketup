@@ -32,9 +32,15 @@ class CompanyController extends Controller
 
     public function show($id)
     {
-        $itemType =  ItemType::find($id);
+        $company =  Company::find($id);
 
-        if (!empty($itemType)) {
+        if (!empty($company)) {
+            $userId = Auth::id();
+
+            if ($company->user_id != $userId) {
+                return response(['message' => 'Usuário não tem permissão para acessar esses dados'], 401);
+            }
+
             return $itemType;
         } else {
             return response(['message' => 'Empresa não encontrado'], 422);

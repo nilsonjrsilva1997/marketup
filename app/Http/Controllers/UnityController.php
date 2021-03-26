@@ -34,6 +34,12 @@ class UnityController extends Controller
         $unity =  Unity::find($id);
 
         if (!empty($unity)) {
+            $userId = Auth::id();
+
+            if ($unity->user_id != $userId) {
+                return response(['message' => 'Usuário não tem permissão para acessar esses dados'], 401);
+            }
+
             return $unity;
         } else {
             return response(['message' => 'Unidade não encontrada'], 422);
@@ -53,7 +59,7 @@ class UnityController extends Controller
             $userId = Auth::id();
 
             if ($unity->user_id != $userId) {
-                return response(['message' => 'Usuário não tem permissão para alterar esses dados']);
+                return response(['message' => 'Usuário não tem permissão para alterar esses dados'], 401);
             }
 
             $unity->fill($validatedData);
@@ -72,7 +78,7 @@ class UnityController extends Controller
             $userId = Auth::id();
             
             if ($unity->user_id != $userId) {
-                return response(['message' => 'Usuário não tem permissão para deletar esses dados']);
+                return response(['message' => 'Usuário não tem permissão para deletar esses dados'], 401);
             }
 
             if ($unity->delete()) {
