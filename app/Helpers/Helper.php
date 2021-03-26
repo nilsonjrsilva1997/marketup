@@ -42,8 +42,8 @@ class Helper
         ]);
 
         DB::table('unities')->insert([
-            'name' => 'Hora/Funcionario',
-            'abbreviation' => 'Hora/Funcionario',
+            'name' => 'Hora/Funcionário',
+            'abbreviation' => 'Hora/Funcionário',
             'user_id' => $userId,
         ]);
 

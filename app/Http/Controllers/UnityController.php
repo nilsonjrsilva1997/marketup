@@ -10,13 +10,14 @@ class UnityController extends Controller
 {
     public function index()
     {
-        $unity =  Unity::all();
+        $userId = Auth::id();
+        $unity =  Unity::where(['user_id' => $userId])->get();
         return $unity;
     }
 
     public function create(Request $request)
     {
-        $userId = Auth::id();        
+        $userId = Auth::id();
         $request['user_id'] = $userId;
 
         $validatedData = $request->validate([
@@ -44,6 +45,12 @@ class UnityController extends Controller
         $unity = Unity::find($id);
 
         if (!empty($unity)) {
+            $userId = Auth::id();
+
+            if ($unity->user_id != $userId) {
+                return response(['message' => 'Usuário não tem permissão para alterar esses dados']);
+            }
+
             $unity->fill($validatedData);
             $unity->save();
             return $unity;
@@ -57,6 +64,12 @@ class UnityController extends Controller
         $unity = Unity::find($id);
 
         if (!empty($unity)) {
+            $userId = Auth::id();
+            
+            if ($unity->user_id != $userId) {
+                return response(['message' => 'Usuário não tem permissão para alterar esses dados']);
+            }
+
             if ($unity->delete()) {
                 return response(['message' => 'Unidade excluida com sucesso'], 200);
             }

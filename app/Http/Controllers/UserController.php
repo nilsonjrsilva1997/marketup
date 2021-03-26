@@ -27,7 +27,6 @@ class UserController extends Controller
         return response(['user' => $user, 'access_token' => $accessToken]);
     }
 
-
     public function login(Request $request)
     {
         $loginData = $request->validate([
