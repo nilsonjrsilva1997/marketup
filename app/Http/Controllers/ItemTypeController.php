@@ -9,8 +9,8 @@ class ItemTypeController extends Controller
 {
     public function index()
     {
-        $itemType =  ItemType::all();
-        return $itemType;
+        $itemTypes =  ItemType::all();
+        return $itemTypes;
     }
 
     public function create(Request $request)

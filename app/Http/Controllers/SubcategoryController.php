@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Unity;
-use Auth;
+use App\Models\Subcategory;
 
-class UnityController extends Controller
+class SubcategoryController extends Controller
 {
     public function index()
     {
-        $userId = Auth::id();
-        $unities =  Unity::where(['user_id' => $userId])->get();
-        return $unities;
+        $subcategories =  Subcategory::all();
+        return $subcategories;
     }
 
     public function create(Request $request)

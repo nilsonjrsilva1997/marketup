@@ -9,8 +9,8 @@ class CompanyAddressController extends Controller
 {
     public function index()
     {
-        $companyAddress =  CompanyAddress::all();
-        return $companyAddress;
+        $companyAddresses =  CompanyAddress::all();
+        return $companyAddresses;
     }
 
     public function create(Request $request)

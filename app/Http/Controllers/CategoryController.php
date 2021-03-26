@@ -11,8 +11,8 @@ class CategoryController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $category =  Category::where(['user_id' => $userId])->get();
-        return $category;
+        $categories =  Category::where(['user_id' => $userId])->get();
+        return $categories;
     }
 
     public function create(Request $request)

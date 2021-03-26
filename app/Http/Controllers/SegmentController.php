@@ -11,8 +11,8 @@ class SegmentController extends Controller
 {
     public function index()
     {
-        $segment =  Segment::all();
-        return $segment;
+        $segments =  Segment::all();
+        return $segments;
     }
 
     public function create(Request $request)

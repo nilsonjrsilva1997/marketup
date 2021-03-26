@@ -10,8 +10,8 @@ class CompanyController extends Controller
 {
     public function index()
     {
-        $company =  Company::all();
-        return $company;
+        $companies =  Company::all();
+        return $companies;
     }
 
     public function create(Request $request)
