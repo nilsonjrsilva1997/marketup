@@ -59,14 +59,6 @@ Route::middleware('auth:api')->group(function () {
         Route::put('/update/{id}', [\App\Http\Controllers\UnityController::class, 'update']);
         Route::delete('destroy/{id}', [\App\Http\Controllers\UnityController::class, 'destroy']);
     });
-
-    Route::prefix('user_unity')->group(function () {
-        Route::get('/', [\App\Http\Controllers\UserUnityController::class, 'index']);
-        Route::get('/show/{id}', [\App\Http\Controllers\UserUnityController::class, 'show']);
-        Route::post('/', [\App\Http\Controllers\UserUnityController::class, 'create']);
-        Route::put('/update/{id}', [\App\Http\Controllers\UserUnityController::class, 'update']);
-        Route::delete('destroy/{id}', [\App\Http\Controllers\UserUnityController::class, 'destroy']);
-    });
 });
 
 Route::post('register', [App\Http\Controllers\UserController::class, 'register']);

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use App\Models\Company;
-use App\Models\UserUnity;
+use App\Models\Unity;
 
 class User extends Authenticatable
 {
@@ -51,8 +51,8 @@ class User extends Authenticatable
         return $this->hasOne(Company::class);
     }
 
-    public function user_unities()
+    public function unities()
     {
-        return $this->hasMany(UserUnity::class);
+        return $this->hasMany(Unity::class);
     }
 }
