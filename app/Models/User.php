@@ -10,6 +10,7 @@ use Laravel\Passport\HasApiTokens;
 use App\Models\Company;
 use App\Models\Unity;
 use App\Models\Category;
+use App\Models\Brand;
 
 class User extends Authenticatable
 {
@@ -60,5 +61,10 @@ class User extends Authenticatable
     public function categories()
     {
         return $this->hasMany(Category::class);
+    }
+
+    public function brands()
+    {
+        return $this->hasMany(Brand::class);
     }
 }

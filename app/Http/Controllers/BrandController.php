@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\Brand;
 use Auth;
 
-class CategoryController extends Controller
+class BrandController extends Controller
 {
     public function index()
     {
         $userId = Auth::id();
-        $categories =  Category::where(['user_id' => $userId])->with('subcategories')->get();
-        return $categories;
+        $brands =  Brand::where(['user_id' => $userId])->get();
+        return $brands;
     }
 
     public function create(Request $request)
@@ -25,23 +25,23 @@ class CategoryController extends Controller
             'user_id' => 'required|integer|exists:users,id',
         ]);
 
-        return Category::create($validatedData);
+        return Brand::create($validatedData);
     }
 
     public function show($id)
     {
-        $category =  Category::where(['id' => $id])->with('subcategories')->first();
+        $brand =  Brand::find($id);
 
-        if (!empty($category)) {
+        if (!empty($brand)) {
             $userId = Auth::id();
 
-            if ($category->user_id != $userId) {
+            if ($brand->user_id != $userId) {
                 return response(['message' => 'Usuário não tem permissão para vizualizar esses dados']);
             }
 
-            return $category;
+            return $brand;
         } else {
-            return response(['message' => 'Categoria não encontrada'], 422);
+            return response(['message' => 'Marca não encontrada'], 422);
         }
     }
 
@@ -51,39 +51,39 @@ class CategoryController extends Controller
             'name' => 'string|max:255',
         ]);
 
-        $category = Category::find($id);
+        $brand = Brand::find($id);
 
-        if (!empty($category)) {
+        if (!empty($brand)) {
             $userId = Auth::id();
 
-            if ($category->user_id != $userId) {
+            if ($brand->user_id != $userId) {
                 return response(['message' => 'Usuário não tem permissão para alterar esses dados']);
             }
 
-            $category->fill($validatedData);
-            $category->save();
-            return $category;
+            $brand->fill($validatedData);
+            $brand->save();
+            return $brand;
         } else {
-            return response(['message' => 'Categoria não encontrada'], 422);
+            return response(['message' => 'Marca não encontrada'], 422);
         }
     }
 
     public function destroy($id)
     {
-        $category = Category::find($id);
+        $brand = Brand::find($id);
 
-        if (!empty($category)) {
+        if (!empty($brand)) {
             $userId = Auth::id();
 
-            if ($category->user_id != $userId) {
+            if ($brand->user_id != $userId) {
                 return response(['message' => 'Usuário não tem permissão para deletar esses dados']);
             }
 
-            if ($category->delete()) {
-                return response(['message' => 'Categoria excluida com sucesso'], 200);
+            if ($brand->delete()) {
+                return response(['message' => 'Marca excluida com sucesso'], 200);
             }
         } else {
-            return response(['message' => 'Categoria não encontrada'], 422);
+            return response(['message' => 'Marca não encontrada'], 422);
         }
     }
 }
