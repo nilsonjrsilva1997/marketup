@@ -84,6 +84,12 @@ Route::middleware('auth:api')->group(function () {
             Route::put('/update/{id}', [\App\Http\Controllers\BrandController::class, 'update']);
             Route::delete('destroy/{id}', [\App\Http\Controllers\BrandController::class, 'destroy']);
         });
+
+        Route::get('/', [\App\Http\Controllers\ProductController::class, 'index']);
+        Route::get('/show/{id}', [\App\Http\Controllers\ProductController::class, 'show']);
+        Route::post('/', [\App\Http\Controllers\ProductController::class, 'create']);
+        Route::put('/update/{id}', [\App\Http\Controllers\ProductController::class, 'update']);
+        Route::delete('destroy/{id}', [\App\Http\Controllers\ProductController::class, 'destroy']);
     });
 });
 

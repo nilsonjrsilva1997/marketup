@@ -11,6 +11,7 @@ use App\Models\Company;
 use App\Models\Unity;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\Product;
 
 class User extends Authenticatable
 {
@@ -66,5 +67,10 @@ class User extends Authenticatable
     public function brands()
     {
         return $this->hasMany(Brand::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }
