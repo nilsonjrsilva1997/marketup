@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Auth;
 use App\Helpers\Helper;
+use App\Models\Tag;
 
 class ProductController extends Controller
 {
@@ -18,6 +19,7 @@ class ProductController extends Controller
             ->with('category')
             ->with('subcategory')
             ->with('brand')
+            ->with('tags')
             ->get();
 
         return $product;
@@ -53,12 +55,28 @@ class ProductController extends Controller
             return response(['message' => 'A imagem do produto é obrigatória']);
         }
 
-        return Product::create($validatedData);
+        $product = Product::create($validatedData);
+
+        foreach($request->tags['names'] as $tag) {
+            Tag::create([
+                'name' => $tag,
+                'product_id' => $product->id
+            ]);
+        }
+
+        return $product;
     }
 
     public function show($id)
     {
-        $product =  Product::find($id);
+        $product =  Product::with('item_type')
+        ->with('unity')
+        ->with('category')
+        ->with('subcategory')
+        ->with('brand')
+        ->with('tags')
+        ->where(['id' => $id])
+        ->first();
 
         if (!empty($product)) {
             $userId = Auth::id();

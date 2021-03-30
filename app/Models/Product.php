@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Brand;
 use App\Models\User;
+use App\Models\Tag;
 
 class Product extends Model
 {
@@ -47,5 +48,10 @@ class Product extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
     }
 }
