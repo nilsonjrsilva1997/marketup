@@ -85,6 +85,14 @@ Route::middleware('auth:api')->group(function () {
             Route::delete('destroy/{id}', [\App\Http\Controllers\BrandController::class, 'destroy']);
         });
 
+        Route::prefix('price')->group(function () {
+            Route::get('/', [\App\Http\Controllers\PriceController::class, 'index']);
+            Route::get('/show/{id}', [\App\Http\Controllers\PriceController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\PriceController::class, 'create']);
+            Route::put('/update/{id}', [\App\Http\Controllers\PriceController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\PriceController::class, 'destroy']);
+        });
+
         Route::get('/', [\App\Http\Controllers\ProductController::class, 'index']);
         Route::get('/show/{id}', [\App\Http\Controllers\ProductController::class, 'show']);
         Route::post('/', [\App\Http\Controllers\ProductController::class, 'create']);

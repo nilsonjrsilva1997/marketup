@@ -20,6 +20,7 @@ class ProductController extends Controller
             ->with('subcategory')
             ->with('brand')
             ->with('tags')
+            ->with('price')
             ->get();
 
         return $product;
@@ -75,6 +76,7 @@ class ProductController extends Controller
         ->with('subcategory')
         ->with('brand')
         ->with('tags')
+        ->with('price')
         ->where(['id' => $id])
         ->first();
 
