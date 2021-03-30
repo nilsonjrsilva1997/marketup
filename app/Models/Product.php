@@ -11,6 +11,7 @@ use App\Models\Subcategory;
 use App\Models\Brand;
 use App\Models\User;
 use App\Models\Tag;
+use App\Models\Price;
 
 class Product extends Model
 {
@@ -53,5 +54,10 @@ class Product extends Model
     public function tags()
     {
         return $this->hasMany(Tag::class);
+    }
+
+    public function price()
+    {
+        return $this->hasOne(Price::class);
     }
 }

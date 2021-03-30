@@ -19,6 +19,7 @@ class CreatePricesTable extends Migration
             $table->float('retail_sale');
             $table->float('wholesale');
             $table->integer('min_qt_wholesale');
+            $table->integer('product_id');
             $table->timestamps();
         });
     }
