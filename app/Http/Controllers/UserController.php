@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Helpers\Helper;
+use Database\Seeders\SizeSeeder;
+use Illuminate\Support\Facades\Artisan;
 
 class UserController extends Controller
 {
@@ -23,7 +25,8 @@ class UserController extends Controller
         $accessToken = $user->createToken('authToken')->accessToken;
 
         Helper::saveUnitsDefault($user->id);
-
+        Helper::saveSizesDefault($user->id);
+        
         return response(['user' => $user, 'access_token' => $accessToken]);
     }
 

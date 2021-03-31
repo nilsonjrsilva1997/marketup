@@ -12,6 +12,7 @@ use App\Models\Unity;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\Size;
 
 class User extends Authenticatable
 {
@@ -72,5 +73,10 @@ class User extends Authenticatable
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function sizes()
+    {
+        return $this->hasMany(Size::class);
     }
 }

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\ItemTypeSeeder;
-use Database\Seeders\UnitySeeder;
 
 class DatabaseSeeder extends Seeder
 {

@@ -58,6 +58,35 @@ class Helper
             'abbreviation' => 'Unidade',
             'user_id' => $userId,
         ]);
+    }
 
+    public static function saveSizesDefault($userId)
+    {
+        DB::table('sizes')->insert([
+            'name' => 'PP',
+            'user_id' => $userId,
+        ]);
+
+        DB::table('sizes')->insert([
+            'name' => 'P',
+            'user_id' => $userId,
+        ]);
+
+        DB::table('sizes')->insert([
+            'name' => 'M',
+            'user_id' => $userId,
+        ]);
+
+        DB::table('sizes')->insert([
+            'name' => 'GG',
+            'user_id' => $userId,
+        ]);
+
+        for($i = 25; $i < 55; $i++) {
+            DB::table('sizes')->insert([
+                'name' => $i,
+                'user_id' => $userId,
+            ]);
+        }
     }
 }
