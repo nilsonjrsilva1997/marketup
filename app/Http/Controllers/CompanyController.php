@@ -41,7 +41,7 @@ class CompanyController extends Controller
                 return response(['message' => 'Usuário não tem permissão para acessar esses dados'], 401);
             }
 
-            return $itemType;
+            return $company;
         } else {
             return response(['message' => 'Empresa não encontrado'], 422);
         }

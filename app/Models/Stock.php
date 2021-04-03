@@ -4,20 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
+use App\Models\Product;
 use App\Models\PivotStockSize;
 
-class Size extends Model
+class Stock extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'user_id'];
+    protected $fillable = ['type', 'product_id'];
 
-    protected $table = 'sizes';
+    protected $table = 'stocks';
 
-    public function user()
+    public function product()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 
     public function pivot_stock_sizes()

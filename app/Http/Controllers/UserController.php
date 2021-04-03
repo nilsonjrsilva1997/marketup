@@ -26,6 +26,7 @@ class UserController extends Controller
 
         Helper::saveUnitsDefault($user->id);
         Helper::saveSizesDefault($user->id);
+        Helper::saveColorDefault($user->id);
         
         return response(['user' => $user, 'access_token' => $accessToken]);
     }

@@ -92,14 +92,28 @@ Route::middleware('auth:api')->group(function () {
                 Route::post('/', [\App\Http\Controllers\SizeController::class, 'create']);
                 Route::put('/update/{id}', [\App\Http\Controllers\SizeController::class, 'update']);
                 Route::delete('destroy/{id}', [\App\Http\Controllers\SizeController::class, 'destroy']);
+
+                Route::prefix('stock_size')->group(function () {
+                    Route::post('/associar', [\App\Http\Controllers\PivotStockSizeController::class, 'associar']);
+                    Route::delete('destroy/{size_id}/{stock_id}', [\App\Http\Controllers\PivotStockSizeController::class, 'desassociar']);
+                });
             });
+
+            Route::prefix('color')->group(function () {
+                Route::get('/', [\App\Http\Controllers\ColorController::class, 'index']);
+                Route::get('/show/{id}', [\App\Http\Controllers\ColorController::class, 'show']);
+                Route::post('/', [\App\Http\Controllers\ColorController::class, 'create']);
+                Route::put('/update/{id}', [\App\Http\Controllers\ColorController::class, 'update']);
+                Route::delete('destroy/{id}', [\App\Http\Controllers\ColorController::class, 'destroy']);
+            });
+
+            Route::get('/', [\App\Http\Controllers\StockController::class, 'index']);
+            Route::get('/show/{id}', [\App\Http\Controllers\StockController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\StockController::class, 'create']);
+            Route::put('/update/{id}', [\App\Http\Controllers\StockController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\StockController::class, 'destroy']);
         });
 
-        Route::get('/', [\App\Http\Controllers\ProductController::class, 'index']);
-        Route::get('/show/{id}', [\App\Http\Controllers\ProductController::class, 'show']);
-        Route::post('/', [\App\Http\Controllers\ProductController::class, 'create']);
-        Route::put('/update/{id}', [\App\Http\Controllers\ProductController::class, 'update']);
-        Route::delete('destroy/{id}', [\App\Http\Controllers\ProductController::class, 'destroy']);
     });
 });
 

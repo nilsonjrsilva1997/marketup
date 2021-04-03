@@ -12,6 +12,7 @@ use App\Models\Brand;
 use App\Models\User;
 use App\Models\Tag;
 use App\Models\Price;
+use App\Models\Stock;
 
 class Product extends Model
 {
@@ -59,5 +60,10 @@ class Product extends Model
     public function price()
     {
         return $this->hasOne(Price::class);
+    }
+
+    public function stock()
+    {
+        return $this->hasOne(Stock::class);
     }
 }

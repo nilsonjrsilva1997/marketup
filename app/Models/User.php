@@ -13,6 +13,7 @@ use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Size;
+use App\Models\Color;
 
 class User extends Authenticatable
 {
@@ -78,5 +79,10 @@ class User extends Authenticatable
     public function sizes()
     {
         return $this->hasMany(Size::class);
+    }
+
+    public function colors()
+    {
+        return $this->hasMany(Color::class);
     }
 }
