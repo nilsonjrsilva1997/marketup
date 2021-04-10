@@ -20,6 +20,8 @@ class ProductController extends Controller
             ->with('subcategory')
             ->with('brand')
             ->with('tags')
+            ->with('stock')
+            ->with('stock.pivot_stock_sizes.size')
             ->get();
 
         return $product;
@@ -58,7 +60,7 @@ class ProductController extends Controller
         $product = Product::create($validatedData);
 
         foreach($request->tags['names'] as $tag) {
-            Tag::create([
+            return Tag::create([
                 'name' => $tag,
                 'product_id' => $product->id
             ]);
@@ -75,6 +77,7 @@ class ProductController extends Controller
         ->with('subcategory')
         ->with('brand')
         ->with('tags')
+        ->with('stock')
         ->where(['id' => $id])
         ->first();
 
