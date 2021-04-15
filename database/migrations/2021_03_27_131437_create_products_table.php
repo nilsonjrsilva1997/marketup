@@ -28,6 +28,7 @@ class CreateProductsTable extends Migration
             $table->string('internal_code');
             $table->string('photo');
             $table->integer('user_id');
+            $table->integer('tax_id');
             $table->timestamps();
         });
     }

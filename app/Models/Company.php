@@ -8,7 +8,7 @@ use App\Models\CompanyAddress;
 use App\Models\User;
 use App\Models\Segment;
 
-class Company extends Model
+class  Company extends Model
 {
     use HasFactory;
 

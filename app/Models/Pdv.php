@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
 
-class  Price extends Model
+class Pdv extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['cost', 'retail_sale', 'wholesale', 'min_qt_wholesale', 'product_id'];
+    protected $fillable = ['product_id', 'pdv_category_id', 'label'];
 
-    protected $table = 'prices';
+    protected $table = 'pdvs';
 
     public function product()
     {

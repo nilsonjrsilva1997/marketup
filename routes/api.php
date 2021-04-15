@@ -22,6 +22,23 @@ Route::middleware('auth:api')->group(function () {
         Route::put('/update/{id}', [\App\Http\Controllers\ProductController::class, 'update']);
         Route::delete('destroy/{id}', [\App\Http\Controllers\ProductController::class, 'destroy']);
 
+        Route::prefix('pdv')->group(function () {
+            Route::prefix('category')->group(function () {
+                Route::get('/', [\App\Http\Controllers\PdvCategoryController::class, 'index']);
+                Route::get('/show/{id}', [\App\Http\Controllers\PdvCategoryController::class, 'show']);
+                Route::post('/', [\App\Http\Controllers\PdvCategoryController::class, 'create']);
+                Route::put('/update/{id}', [\App\Http\Controllers\PdvCategoryController::class, 'update']);
+                Route::delete('destroy/{id}', [\App\Http\Controllers\PdvCategoryController::class, 'destroy']);
+
+            });
+
+            Route::get('/', [\App\Http\Controllers\SegmentController::class, 'index']);
+            Route::get('/show/{id}', [\App\Http\Controllers\SegmentController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\SegmentController::class, 'create']);
+            Route::put('/update/{id}', [\App\Http\Controllers\SegmentController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\SegmentController::class, 'destroy']);
+        });
+
         Route::prefix('item_type')->group(function () {
             Route::get('/', [\App\Http\Controllers\ItemTypeController::class, 'index']);
             Route::get('/show/{id}', [\App\Http\Controllers\ItemTypeController::class, 'show']);
@@ -88,6 +105,30 @@ Route::middleware('auth:api')->group(function () {
                 Route::delete('destroy/{id}', [\App\Http\Controllers\ColorController::class, 'destroy']);
             });
         });
+
+        Route::prefix('tax')->group(function () {
+            Route::prefix('type')->group(function () {
+                Route::get('/', [\App\Http\Controllers\TaxTypeController::class, 'index']);
+                Route::get('/show/{id}', [\App\Http\Controllers\TaxTypeController::class, 'show']);
+                Route::post('/', [\App\Http\Controllers\TaxTypeController::class, 'create']);
+                Route::put('/update/{id}', [\App\Http\Controllers\TaxTypeController::class, 'update']);
+                Route::delete('destroy/{id}', [\App\Http\Controllers\TaxTypeController::class, 'destroy']);
+            });
+
+            Route::prefix('origin')->group(function () {
+                Route::get('/', [\App\Http\Controllers\OriginController::class, 'index']);
+                Route::get('/show/{id}', [\App\Http\Controllers\OriginController::class, 'show']);
+                Route::post('/', [\App\Http\Controllers\OriginController::class, 'create']);
+                Route::put('/update/{id}', [\App\Http\Controllers\OriginController::class, 'update']);
+                Route::delete('destroy/{id}', [\App\Http\Controllers\OriginController::class, 'destroy']);
+            });
+
+            Route::get('/', [\App\Http\Controllers\TaxController::class, 'index']);
+            Route::get('/show/{id}', [\App\Http\Controllers\TaxController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\TaxController::class, 'create']);
+            Route::put('/update/{id}', [\App\Http\Controllers\TaxController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\TaxController::class, 'destroy']);
+        });
     });
 
     Route::prefix('company')->group(function () {
@@ -111,24 +152,6 @@ Route::middleware('auth:api')->group(function () {
             Route::post('/', [\App\Http\Controllers\SegmentController::class, 'create']);
             Route::put('/update/{id}', [\App\Http\Controllers\SegmentController::class, 'update']);
             Route::delete('destroy/{id}', [\App\Http\Controllers\SegmentController::class, 'destroy']);
-        });
-    });
-
-    Route::prefix('taxes')->group(function () {
-        Route::prefix('types')->group(function () {
-            Route::get('/', [\App\Http\Controllers\TaxTypeController::class, 'index']);
-            Route::get('/show/{id}', [\App\Http\Controllers\TaxTypeController::class, 'show']);
-            Route::post('/', [\App\Http\Controllers\TaxTypeController::class, 'create']);
-            Route::put('/update/{id}', [\App\Http\Controllers\TaxTypeController::class, 'update']);
-            Route::delete('destroy/{id}', [\App\Http\Controllers\TaxTypeController::class, 'destroy']);
-        });
-
-        Route::prefix('origins')->group(function () {
-            Route::get('/', [\App\Http\Controllers\OriginController::class, 'index']);
-            Route::get('/show/{id}', [\App\Http\Controllers\OriginController::class, 'show']);
-            Route::post('/', [\App\Http\Controllers\OriginController::class, 'create']);
-            Route::put('/update/{id}', [\App\Http\Controllers\OriginController::class, 'update']);
-            Route::delete('destroy/{id}', [\App\Http\Controllers\OriginController::class, 'destroy']);
         });
     });
 });

@@ -3,29 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
-use Auth;
-use App\Helpers\Helper;
-use App\Models\Tag;
+use App\Models\PdvTag;
 
-class ProductController extends Controller
+class PdvTagController extends Controller
 {
     public function index()
     {
-        $userId = Auth::id();
-        $product =  Product::where(['user_id' => $userId])
-            ->with('item_type')
-            ->with('unity')
-            ->with('category')
-            ->with('subcategory')
-            ->with('brand')
-            ->with('tags')
-            ->with('stock')
-            ->with('tax')
-            ->with('stock.pivot_stock_sizes.size')
-            ->get();
+        $pdvTags = PdvTag::all();
 
-        return $product;
+        return $pdvTags;
     }
 
     public function create(Request $request)
@@ -83,8 +69,8 @@ class ProductController extends Controller
             ->with('stock')
             ->with('tax')
             ->with('stock.pivot_stock_sizes.size')
-        ->where(['id' => $id])
-        ->first();
+            ->where(['id' => $id])
+            ->first();
 
         if (!empty($product)) {
             $userId = Auth::id();

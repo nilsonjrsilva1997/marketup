@@ -13,12 +13,14 @@ use App\Models\User;
 use App\Models\Tag;
 use App\Models\Price;
 use App\Models\Stock;
+use App\Models\Tax;
 
 class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['bar_code', 'status', 'description', 'item_type_id', 'unity_id', 'category_id', 'subcategory_id', 'balance_code', 'brand_id', 'model', 'internal_code', 'photo', 'user_id'];
+    protected $fillable = ['bar_code', 'status', 'description', 'item_type_id', 'unity_id', 'category_id',
+        'subcategory_id', 'balance_code', 'brand_id', 'model', 'internal_code', 'photo', 'user_id', 'tax_id'];
 
     protected $table = 'products';
 
@@ -65,5 +67,10 @@ class Product extends Model
     public function stock()
     {
         return $this->hasOne(Stock::class);
+    }
+
+    public function tax()
+    {
+        return $this->belongsTo(Tax::class, 'tax_id', 'id');
     }
 }

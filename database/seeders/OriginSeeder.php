@@ -27,7 +27,7 @@ class OriginSeeder extends Seeder
         ];
 
         foreach ($data as $origin) {
-            DB::table('tax_types')->insert([
+            DB::table('origins')->insert([
                 'name' => $origin['name'],
                 'index' => $origin['index']
             ]);

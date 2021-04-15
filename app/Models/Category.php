@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\Subcategory;
 use App\Models\Product;
 
-class Category extends Model
+class  Category extends Model
 {
     use HasFactory;
 
