@@ -22,6 +22,14 @@ Route::middleware('auth:api')->group(function () {
         Route::put('/update/{id}', [\App\Http\Controllers\ProductController::class, 'update']);
         Route::delete('destroy/{id}', [\App\Http\Controllers\ProductController::class, 'destroy']);
 
+        Route::prefix('price')->group(function () {
+            Route::get('/', [\App\Http\Controllers\PriceController::class, 'index']);
+            Route::get('/show/{id}', [\App\Http\Controllers\PriceController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\PriceController::class, 'create']);
+            Route::put('/update/{id}', [\App\Http\Controllers\PriceController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\PriceController::class, 'destroy']);
+        });
+
         Route::prefix('pdv')->group(function () {
             Route::prefix('category')->group(function () {
                 Route::get('/', [\App\Http\Controllers\PdvCategoryController::class, 'index']);
@@ -29,14 +37,42 @@ Route::middleware('auth:api')->group(function () {
                 Route::post('/', [\App\Http\Controllers\PdvCategoryController::class, 'create']);
                 Route::put('/update/{id}', [\App\Http\Controllers\PdvCategoryController::class, 'update']);
                 Route::delete('destroy/{id}', [\App\Http\Controllers\PdvCategoryController::class, 'destroy']);
-
             });
 
-            Route::get('/', [\App\Http\Controllers\SegmentController::class, 'index']);
-            Route::get('/show/{id}', [\App\Http\Controllers\SegmentController::class, 'show']);
-            Route::post('/', [\App\Http\Controllers\SegmentController::class, 'create']);
-            Route::put('/update/{id}', [\App\Http\Controllers\SegmentController::class, 'update']);
-            Route::delete('destroy/{id}', [\App\Http\Controllers\SegmentController::class, 'destroy']);
+            Route::group(['prefix' => 'tag'], function () {
+                Route::get('/', [\App\Http\Controllers\PdvTagController::class, 'index']);
+                Route::get('show/{id}/', [\App\Http\Controllers\PdvTagController::class, 'show']);
+                Route::post('/', [\App\Http\Controllers\PdvTagController::class, 'create']);
+                Route::put('update/{id}', [\App\Http\Controllers\PdvTagController::class, 'update']);
+                Route::delete('destroy/{id}', [\App\Http\Controllers\PdvTagController::class, 'destroy']);
+            });
+
+            Route::group(['prefix' => 'pivot_pdv_tag'], function () {
+                Route::post('partner/', [\App\Http\Controllers\PivotPdvTagController::class, 'partner']);
+                Route::post('disassociate/', [\App\Http\Controllers\PivotPdvTagController::class, 'disassociate']);
+            });
+
+            Route::get('/', [\App\Http\Controllers\PdvController::class, 'index']);
+            Route::get('show/{id}/', [\App\Http\Controllers\PdvController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\PdvController::class, 'create']);
+            Route::put('update/{id}', [\App\Http\Controllers\PdvController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\PdvController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'composition'], function () {
+            Route::group(['prefix' => 'unity'], function () {
+                Route::get('/', [\App\Http\Controllers\CompositionUnityController::class, 'index']);
+                Route::get('show/{id}/', [\App\Http\Controllers\CompositionUnityController::class, 'show']);
+                Route::post('/', [\App\Http\Controllers\CompositionUnityController::class, 'create']);
+                Route::put('update/{id}', [\App\Http\Controllers\CompositionUnityController::class, 'update']);
+                Route::delete('destroy/{id}', [\App\Http\Controllers\CompositionUnityController::class, 'destroy']);
+            });
+
+            Route::get('/', [\App\Http\Controllers\CompositionController::class, 'index']);
+            Route::get('show/{id}/', [\App\Http\Controllers\CompositionController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\CompositionController::class, 'create']);
+            Route::put('update/{id}', [\App\Http\Controllers\CompositionController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\CompositionController::class, 'destroy']);
         });
 
         Route::prefix('item_type')->group(function () {

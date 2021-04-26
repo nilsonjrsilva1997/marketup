@@ -10,8 +10,7 @@ class PdvCategoryController extends Controller
 {
     public function index()
     {
-        $pdvCategories =  PdvCategory::all();
-        return $pdvCategories;
+        return Auth::user()->pdv_category;
     }
 
     public function create(Request $request)

@@ -1,10 +1,8 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
-class CreatePdvTagsTable extends Migration
+class CreatePdvsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +11,14 @@ class CreatePdvTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pdv_tags', function (Blueprint $table) {
+        Schema::create('pdvs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('pdv_id');
+            $table->integer('category_id');
+            $table->string('label');
+            $table->integer('product_id');            
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -28,6 +26,6 @@ class CreatePdvTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pdv_tags');
+        Schema::dropIfExists('pdvs');
     }
 }

@@ -14,6 +14,8 @@ use App\Models\Tag;
 use App\Models\Price;
 use App\Models\Stock;
 use App\Models\Tax;
+use App\Models\Pdv;
+use App\Models\Composition;
 
 class Product extends Model
 {
@@ -72,5 +74,15 @@ class Product extends Model
     public function tax()
     {
         return $this->belongsTo(Tax::class, 'tax_id', 'id');
+    }
+
+    public function pdv()
+    {
+        return $this->hasMany(Pdv::class);
+    }
+
+    public function composition()
+    {
+        return $this->hasMany(Composition::class);
     }
 }

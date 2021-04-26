@@ -14,6 +14,8 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Size;
 use App\Models\Color;
+use App\Models\PdvCategory;
+use App\Models\CompositionUnity;
 
 class User extends Authenticatable
 {
@@ -84,5 +86,15 @@ class User extends Authenticatable
     public function colors()
     {
         return $this->hasMany(Color::class);
+    }
+
+    public function pdv_category()
+    {
+        return $this->hasMany(PdvCategory::class);
+    }
+
+    public function composition_unity()
+    {
+        return $this->hasMany(CompositionUnity::class);
     }
 }
