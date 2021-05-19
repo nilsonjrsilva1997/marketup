@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\ItemTypeSeeder;
+use Database\Seeders\DestinationIncomeTaxSeeder;
+use Database\Seeders\BankSeeder;
+use Database\Seeders\DocumentTypeSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,5 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ItemTypeSeeder::class);
         $this->call(TaxTypeSeeder::class);
         $this->call(OriginSeeder::class);
+        $this->call(DestinationIncomeTaxSeeder::class);
+        $this->call(BankSeeder::class);
+        $this->call(DocumentTypeSeeder::class);
     }
 }

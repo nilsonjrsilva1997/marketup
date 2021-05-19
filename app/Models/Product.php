@@ -16,6 +16,7 @@ use App\Models\Stock;
 use App\Models\Tax;
 use App\Models\Pdv;
 use App\Models\Composition;
+use App\Models\Fragmentation;
 
 class Product extends Model
 {
@@ -84,5 +85,10 @@ class Product extends Model
     public function composition()
     {
         return $this->hasMany(Composition::class);
+    }
+
+    public function fragmentation()
+    {
+        return $this->hasOne(Fragmentation::class);
     }
 }

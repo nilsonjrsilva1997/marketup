@@ -59,6 +59,54 @@ Route::middleware('auth:api')->group(function () {
             Route::delete('destroy/{id}', [\App\Http\Controllers\PdvController::class, 'destroy']);
         });
 
+        Route::group(['prefix' => 'fragmentation'], function () {
+            Route::group(['prefix' => 'unity'], function () {
+                Route::get('/', [\App\Http\Controllers\FragmentationUnityController::class, 'index']);
+                Route::get('show/{id}/', [\App\Http\Controllers\FragmentationUnityController::class, 'show']);
+                Route::post('/', [\App\Http\Controllers\FragmentationUnityController::class, 'create']);
+                Route::put('update/{id}', [\App\Http\Controllers\FragmentationUnityController::class, 'update']);
+                Route::delete('destroy/{id}', [\App\Http\Controllers\FragmentationUnityController::class, 'destroy']);
+            });
+
+            Route::get('/', [\App\Http\Controllers\FragmentationController::class, 'index']);
+            Route::get('show/{id}/', [\App\Http\Controllers\FragmentationController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\FragmentationController::class, 'create']);
+            Route::put('update/{id}', [\App\Http\Controllers\FragmentationController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\FragmentationController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'virtual_store'], function () {
+            Route::group(['prefix' => 'menu'], function () {
+                Route::get('/', [\App\Http\Controllers\MenuController::class, 'index']);
+                Route::get('show/{id}/', [\App\Http\Controllers\MenuController::class, 'show']);
+                Route::post('/', [\App\Http\Controllers\MenuController::class, 'create']);
+                Route::put('update/{id}', [\App\Http\Controllers\MenuController::class, 'update']);
+                Route::delete('destroy/{id}', [\App\Http\Controllers\MenuController::class, 'destroy']);
+            });
+
+            Route::group(['prefix' => 'sub_menu'], function () {
+                Route::get('/', [\App\Http\Controllers\SubMenuController::class, 'index']);
+                Route::get('show/{id}/', [\App\Http\Controllers\SubMenuController::class, 'show']);
+                Route::post('/', [\App\Http\Controllers\SubMenuController::class, 'create']);
+                Route::put('update/{id}', [\App\Http\Controllers\SubMenuController::class, 'update']);
+                Route::delete('destroy/{id}', [\App\Http\Controllers\SubMenuController::class, 'destroy']);
+            });
+
+            Route::group(['prefix' => 'photo'], function () {
+                Route::get('/', [\App\Http\Controllers\PhotoProductStoreController::class, 'index']);
+                Route::get('show/{id}/', [\App\Http\Controllers\PhotoProductStoreController::class, 'show']);
+                Route::post('/', [\App\Http\Controllers\PhotoProductStoreController::class, 'create']);
+                Route::put('update/{id}', [\App\Http\Controllers\PhotoProductStoreController::class, 'update']);
+                Route::delete('destroy/{id}', [\App\Http\Controllers\PhotoProductStoreController::class, 'destroy']);
+            });
+
+            Route::get('/', [\App\Http\Controllers\VitualStoreController::class, 'index']);
+            Route::get('show/{id}/', [\App\Http\Controllers\VitualStoreController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\VitualStoreController::class, 'create']);
+            Route::put('update/{id}', [\App\Http\Controllers\VitualStoreController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\VitualStoreController::class, 'destroy']);
+        });
+
         Route::group(['prefix' => 'composition'], function () {
             Route::group(['prefix' => 'unity'], function () {
                 Route::get('/', [\App\Http\Controllers\CompositionUnityController::class, 'index']);
@@ -189,6 +237,110 @@ Route::middleware('auth:api')->group(function () {
             Route::put('/update/{id}', [\App\Http\Controllers\SegmentController::class, 'update']);
             Route::delete('destroy/{id}', [\App\Http\Controllers\SegmentController::class, 'destroy']);
         });
+    });
+
+    Route::group(['prefix' => 'bank'], function () {
+        Route::get('/', [\App\Http\Controllers\BankController::class, 'index']);
+        Route::get('show/{id}/', [\App\Http\Controllers\BankController::class, 'show']);
+        Route::post('/', [\App\Http\Controllers\BankController::class, 'create']);
+        Route::put('update/{id}', [\App\Http\Controllers\BankController::class, 'update']);
+        Route::delete('destroy/{id}', [\App\Http\Controllers\BankController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'client'], function () {
+        Route::group(['prefix' => 'address'], function () {
+            Route::get('/', [\App\Http\Controllers\AddressClientController::class, 'index']);
+            Route::get('show/{id}/', [\App\Http\Controllers\AddressClientController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\AddressClientController::class, 'create']);
+            Route::put('update/{id}', [\App\Http\Controllers\AddressClientController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\AddressClientController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'price_list'], function () {
+            Route::get('/', [\App\Http\Controllers\PriceListClientTypeController::class, 'index']);
+            Route::get('show/{id}/', [\App\Http\Controllers\PriceListClientTypeController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\PriceListClientTypeController::class, 'create']);
+            Route::put('update/{id}', [\App\Http\Controllers\PriceListClientTypeController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\PriceListClientTypeController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'destination_income_tax'], function () {
+            Route::get('/', [\App\Http\Controllers\DestinationIncomeTaxController::class, 'index']);
+            Route::get('show/{id}/', [\App\Http\Controllers\DestinationIncomeTaxController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\DestinationIncomeTaxController::class, 'create']);
+            Route::put('update/{id}', [\App\Http\Controllers\DestinationIncomeTaxController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\DestinationIncomeTaxController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'contact'], function () {
+            Route::get('/', [\App\Http\Controllers\ContactController::class, 'index']);
+            Route::get('show/{id}/', [\App\Http\Controllers\ContactController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\ContactController::class, 'create']);
+            Route::put('update/{id}', [\App\Http\Controllers\ContactController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\ContactController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'bank_data'], function () {
+            Route::get('/', [\App\Http\Controllers\BankDataController::class, 'index']);
+            Route::get('show/{id}/', [\App\Http\Controllers\BankDataController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\BankDataController::class, 'create']);
+            Route::put('update/{id}', [\App\Http\Controllers\BankDataController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\BankDataController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'document_type'], function () {
+            Route::get('/', [\App\Http\Controllers\DocumentTypeController::class, 'index']);
+            Route::get('show/{id}/', [\App\Http\Controllers\DocumentTypeController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\DocumentTypeController::class, 'create']);
+            Route::put('update/{id}', [\App\Http\Controllers\DocumentTypeController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\DocumentTypeController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'document'], function () {
+            Route::get('/', [\App\Http\Controllers\DocumentController::class, 'index']);
+            Route::get('show/{id}/', [\App\Http\Controllers\DocumentController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\DocumentController::class, 'create']);
+            Route::put('update/{id}', [\App\Http\Controllers\DocumentController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\DocumentController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'historic'], function () {
+            Route::get('/', [\App\Http\Controllers\HistoricController::class, 'index']);
+            Route::get('show/{id}/', [\App\Http\Controllers\HistoricController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\HistoricController::class, 'create']);
+            Route::put('update/{id}', [\App\Http\Controllers\HistoricController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\HistoricController::class, 'destroy']);
+        });
+
+        Route::group(['prefix' => 'tax_data'], function () {
+            Route::get('/', [\App\Http\Controllers\TaxDataController::class, 'index']);
+            Route::get('show/{id}/', [\App\Http\Controllers\TaxDataController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\TaxDataController::class, 'create']);
+            Route::put('update/{id}', [\App\Http\Controllers\TaxDataController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\TaxDataController::class, 'destroy']);
+        });
+
+        Route::get('/', [\App\Http\Controllers\ClientController::class, 'index']);
+        Route::get('show/{id}/', [\App\Http\Controllers\ClientController::class, 'show']);
+        Route::post('/', [\App\Http\Controllers\ClientController::class, 'create']);
+        Route::put('update/{id}', [\App\Http\Controllers\ClientController::class, 'update']);
+        Route::delete('destroy/{id}', [\App\Http\Controllers\ClientController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'service'], function () {
+        Route::group(['prefix' => 'unity'], function () {
+            Route::get('/', [\App\Http\Controllers\ServiceUnityController::class, 'index']);
+            Route::get('show/{id}/', [\App\Http\Controllers\ServiceUnityController::class, 'show']);
+            Route::post('/', [\App\Http\Controllers\ServiceUnityController::class, 'create']);
+            Route::put('update/{id}', [\App\Http\Controllers\ServiceUnityController::class, 'update']);
+            Route::delete('destroy/{id}', [\App\Http\Controllers\ServiceUnityController::class, 'destroy']);
+        });
+
+        Route::get('/', [\App\Http\Controllers\ServiceController::class, 'index']);
+        Route::get('show/{id}/', [\App\Http\Controllers\ServiceController::class, 'show']);
+        Route::post('/', [\App\Http\Controllers\ServiceController::class, 'create']);
+        Route::put('update/{id}', [\App\Http\Controllers\ServiceController::class, 'update']);
+        Route::delete('destroy/{id}', [\App\Http\Controllers\ServiceController::class, 'destroy']);
     });
 });
 
